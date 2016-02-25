@@ -1,8 +1,8 @@
 //
-//  InterfaceController.swift
-//  PizzaWatch WatchKit Extension
+//  SelMasaPizza.swift
+//  PizzaWatch
 //
-//  Created by Juan  Sanchez on 23/2/16.
+//  Created by Juan  Sanchez on 24/2/16.
 //  Copyright © 2016 Juan  Sanchez. All rights reserved.
 //
 
@@ -10,25 +10,30 @@ import WatchKit
 import Foundation
 
 
-class InterfaceController: WKInterfaceController {
+class SelMasaPizza: WKInterfaceController {
+    
+    var pizza = Pizza()
+    
+    let lista_masas = ["Delgada", "Crujiente", "Gruesa"]
+    
+    @IBOutlet var lblMasa: WKInterfaceLabel!
     
     
- 
-    
-    @IBAction func btnIniciar() {
-        let pizza = Pizza()
-        pushControllerWithName("seleccionTamano", context: pizza)
+    @IBAction func sldMasa(value: Float) {
+        let indice = Int(value)
+        lblMasa.setText(lista_masas[indice])
+        self.pizza.masa = lista_masas[indice]
     }
     
- 
-    @IBAction func btnSalir() {
-        
-        exit(0)
-    }
     
+    @IBAction func btnConfirmarMasa() {
+        pushControllerWithName("seleccionQueso", context: pizza)
+    }
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        
+        pizza = context! as! Pizza
         
         // Configure interface objects here.
     }

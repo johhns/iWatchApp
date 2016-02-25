@@ -1,8 +1,8 @@
 //
-//  InterfaceController.swift
-//  PizzaWatch WatchKit Extension
+//  SelTamanoPizza.swift
+//  PizzaWatch
 //
-//  Created by Juan  Sanchez on 23/2/16.
+//  Created by Juan  Sanchez on 24/2/16.
 //  Copyright © 2016 Juan  Sanchez. All rights reserved.
 //
 
@@ -10,23 +10,31 @@ import WatchKit
 import Foundation
 
 
-class InterfaceController: WKInterfaceController {
-    
-    
- 
-    
-    @IBAction func btnIniciar() {
-        let pizza = Pizza()
-        pushControllerWithName("seleccionTamano", context: pizza)
-    }
-    
- 
-    @IBAction func btnSalir() {
-        
-        exit(0)
-    }
-    
 
+class SelTamanoPizza: WKInterfaceController {
+
+    let pizza = Pizza()
+    
+    let lista_tamano = ["Chica", "Mediana", "Grande"]
+    
+    @IBOutlet var lblTamano: WKInterfaceLabel!
+    
+    @IBOutlet var sliderTamano: WKInterfaceSlider!
+    
+    
+    
+    @IBAction func sldTamano(value: Float) {
+        let indice = Int(value)
+        lblTamano.setText(lista_tamano[indice])
+        self.pizza.tamano = lista_tamano[indice]
+    }
+    
+    
+    @IBAction func btnConfirmarTamano() {
+        pushControllerWithName("seleccionMasa", context: pizza)
+    }
+    
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
@@ -36,6 +44,7 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+
     }
 
     override func didDeactivate() {

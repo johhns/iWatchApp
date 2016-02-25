@@ -1,8 +1,8 @@
 //
-//  InterfaceController.swift
-//  PizzaWatch WatchKit Extension
+//  OrdenEnviada.swift
+//  PizzaWatch
 //
-//  Created by Juan  Sanchez on 23/2/16.
+//  Created by Juan  Sanchez on 24/2/16.
 //  Copyright © 2016 Juan  Sanchez. All rights reserved.
 //
 
@@ -10,22 +10,20 @@ import WatchKit
 import Foundation
 
 
-class InterfaceController: WKInterfaceController {
+class OrdenEnviada: WKInterfaceController {
+    
+    var pizza = Pizza()
     
     
- 
-    
-    @IBAction func btnIniciar() {
-        let pizza = Pizza()
-        pushControllerWithName("seleccionTamano", context: pizza)
+    @IBAction func btnOtraOrden() {
+        pushControllerWithName("mainView", context: pizza)
     }
     
- 
+    
+    
     @IBAction func btnSalir() {
-        
         exit(0)
     }
-    
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
